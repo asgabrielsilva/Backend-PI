@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 
 from core.models import Carrinho
-from core.serializers import CarrinhoSerializer, CarrinhoDetailSerializer
+from core.serializers import CarrinhoDetailSerializer, CarrinhoSerializer
 
 
 class CarrinhoViewSet(ModelViewSet):
