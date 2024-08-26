@@ -1,39 +1,33 @@
 from django.db import models
 
-from .caminho import Caminho
-from .elemento import Elemento
-from .raridade import Raridade
-
 class Produto(models.Model):
     class RaridadeProduto(models.IntegerChoices):
         QUATRO = 4, "4 Estrelas"
         CINCO = 5, "5 Estrelas"
 
     class CaminhoProduto(models.IntegerChoices):
-        HARMONIA = 1, "Cartão de Crédito"
-        CARTAO_DEBITO = 2, "Cartão de Débito"
-        PIX = 3, "PIX"
-        BOLETO = 4, "Boleto"
-        TRANSFERENCIA_BANCARIA = 5, "Transferência Bancária"
-        DINHEIRO = 6, "Dinheiro"
-        OUTRO = 7, "Outro"
+        DESTRUICAO = 1, "A Destruição"
+        CACA = 2, "A Caça"
+        ERUDICAO = 3, "A Erudição"
+        HARMONIA = 4, "A Harmonia"
+        INEXISTENCIA = 5, "A Inexistência"
+        PRESERVACAO = 6, "A Preservação"
+        ABUNDANCIA = 7, "A Abundância"
     
     class ElementoProduto(models.IntegerChoices):
-        CARTAO_CREDITO = 1, "Cartão de Crédito"
-        CARTAO_DEBITO = 2, "Cartão de Débito"
-        PIX = 3, "PIX"
-        BOLETO = 4, "Boleto"
-        TRANSFERENCIA_BANCARIA = 5, "Transferência Bancária"
-        DINHEIRO = 6, "Dinheiro"
-        OUTRO = 7, "Outro"
+        FISICO = 1, "Físico"
+        FOGO = 2, "Fogo"
+        GELO = 3, "Gelo"
+        RAIO = 4, "Raio"
+        VENTO = 5, "Vento"
+        QUANTICO = 6, "Quântico"
+        IMAGINARIO = 7, "Imaginário"
 
     nome = models.CharField(max_length=255)
     descricao = models.CharField(max_length=32, null=True, blank=True)
     preco = models.DecimalField(max_digits=7, decimal_places=2, default=0, null=True, blank=True, verbose_name="Preço")
-    caminho = models.ForeignKey(Caminho, on_delete=models.PROTECT, related_name="produtos", blank=True, null=True)
-    elemento = models.ForeignKey(Elemento, on_delete=models.PROTECT, related_name="produtos", blank=True, null=True)
-    caminho = models.IntegerField(choices=CaminhoProduto.choices, default=CaminhoProduto.CARTAO_CREDITO)
-    elemento = models.IntegerField(choices=ElementoProduto.choices, default=ElementoProduto.CARTAO_CREDITO)
+    caminho = models.IntegerField(choices=CaminhoProduto.choices, default=CaminhoProduto.DESTRUICAO)
+    elemento = models.IntegerField(choices=ElementoProduto.choices, default=ElementoProduto.FISICO)
     tier = models.IntegerField(choices=RaridadeProduto.choices,  default=RaridadeProduto.QUATRO)
 
     def __str__(self):
