@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
@@ -17,6 +19,8 @@ router.register(r"usuarios", UserViewSet, basename="usuarios")
 router.register(r"compras", CompraViewSet, basename="compras")
 router.register(r"produtos", ProdutoViewSet, basename="produtos")
 
+from uploader.router import router as uploader_router
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     # OpenAPI 3
@@ -34,6 +38,10 @@ urlpatterns = [
     # Simple JWT
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/media/", include(uploader_router.urls)),  # nova linha
+
     # API
     path("api/", include(router.urls)),
 ]
+
+urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
