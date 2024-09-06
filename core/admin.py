@@ -50,6 +50,13 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     )
+
+
+# @admin.register(ItensCompra)
+class ItensCompraInline(admin.TabularInline):
+    model = ItensCompra
+    extra = 1
+
 @admin.register(Compra)
 class CompraAdmin(admin.ModelAdmin):
     list_display = ('user', 'status')
@@ -57,14 +64,7 @@ class CompraAdmin(admin.ModelAdmin):
     list_filter = ('user', 'status')
     ordering = ('user', 'status')
     list_per_page = 25
-
-@admin.register(ItensCompra)
-class ItensCompraAdmin(admin.ModelAdmin):
-    list_display = ('compra', 'produto', 'quantidade')
-    search_fields = ('compra', 'produto', 'quantidade')
-    list_filter = ('compra', 'produto', 'quantidade')
-    ordering = ('compra', 'produto', 'quantidade')
-    list_per_page = 25
+    inlines = [ItensCompraInline]
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
