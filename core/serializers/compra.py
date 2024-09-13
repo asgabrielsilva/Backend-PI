@@ -6,6 +6,7 @@ class ItensCompraSerializer(ModelSerializer):
     class Meta:
         model = ItensCompra
         fields = "__all__"
+        depth = 1
 
 class CompraSerializer(ModelSerializer):
     usuario = CharField(source="user.email", read_only=True)
@@ -21,5 +22,5 @@ class CompraDetailSerializer(ModelSerializer):
     itens = ItensCompraSerializer(many=True, read_only=True)
     class Meta:
         model = Compra
-        fields = "__all__"
-        depth = 1
+        fields = ("id", "usuario", "status", "itens")
+        
