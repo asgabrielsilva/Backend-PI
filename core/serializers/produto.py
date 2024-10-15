@@ -16,9 +16,13 @@ class ProdutoDetailSerializer(ModelSerializer):
         depth = 1
 
 class ProdutoListSerializer(ModelSerializer):
+    backgroundChar = ImageSerializer(
+        required=False,
+        read_only=True
+    )
     class Meta:
         model = Produto
-        fields = ("id", "nome", "preco")
+        fields = ("id", "nome", "preco", "backgroundChar")
 
 class ProdutoSerializer(ModelSerializer):
     backgroundChar_attachment_key = SlugRelatedField(
