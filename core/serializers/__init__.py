@@ -1,3 +1,3 @@
 from .user import UserSerializer
-from .compra import CompraDetailSerializer, CompraSerializer
+from .compra import CompraDetailSerializer, CompraSerializer, CriarEditarCompraSerializer, CriarEditarItensCompraSerializer, ItensCompraSerializer
 from .produto import ProdutoDetailSerializer, ProdutoListSerializer, ProdutoSerializer
