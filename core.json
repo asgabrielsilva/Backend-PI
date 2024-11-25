@@ -1,0 +1,149 @@
+[
+{
+  "model": "core.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$sRlNaEO6fh3GYG8zyjasqV$thH6mPkKKXXrarMIskHa6SKUmVitNBoidZPDLW78RDU=",
+    "last_login": "2024-11-11T17:44:54.756Z",
+    "is_superuser": true,
+    "passage_id": "324321544235435",
+    "email": "a@a.com",
+    "name": "Superusuário",
+    "is_active": true,
+    "is_staff": true,
+    "foto": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.user",
+  "pk": 3,
+  "fields": {
+    "password": "!DWJwU3a9aMSUA5xqAvR2wWJzli4jw7yidCiGhO9q",
+    "last_login": null,
+    "is_superuser": true,
+    "passage_id": "bLldZK8dKeSzdGWy4HpwEiWu",
+    "email": "gabrielalmeida290905@gmail.com",
+    "name": "Gabriel de Almeida da Silva",
+    "is_active": true,
+    "is_staff": true,
+    "foto": null,
+    "groups": [
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.produto",
+  "pk": 1,
+  "fields": {
+    "nome": "Tingyun",
+    "descricao": "Tingyungyunyun",
+    "preco": "-1.00",
+    "caminho": 4,
+    "elemento": 4,
+    "tier": 4,
+    "backgroundChar": null,
+    "caminhoPng": null,
+    "elementoPng": null
+  }
+},
+{
+  "model": "core.produto",
+  "pk": 2,
+  "fields": {
+    "nome": "Welt",
+    "descricao": "Prepare-se para a desintegração gravitacional",
+    "preco": "12.00",
+    "caminho": 5,
+    "elemento": 7,
+    "tier": 5,
+    "backgroundChar": null,
+    "caminhoPng": null,
+    "elementoPng": null
+  }
+},
+{
+  "model": "core.compra",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "status": 1
+  }
+},
+{
+  "model": "core.compra",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "status": 1
+  }
+},
+{
+  "model": "core.compra",
+  "pk": 4,
+  "fields": {
+    "user": 3,
+    "status": 2
+  }
+},
+{
+  "model": "core.compra",
+  "pk": 5,
+  "fields": {
+    "user": 3,
+    "status": 1
+  }
+},
+{
+  "model": "core.itenscompra",
+  "pk": 4,
+  "fields": {
+    "compra": 2,
+    "produto": 1,
+    "quantidade": 1,
+    "preco": "0.00"
+  }
+},
+{
+  "model": "core.itenscompra",
+  "pk": 5,
+  "fields": {
+    "compra": 3,
+    "produto": 2,
+    "quantidade": 2,
+    "preco": "0.00"
+  }
+},
+{
+  "model": "core.itenscompra",
+  "pk": 6,
+  "fields": {
+    "compra": 4,
+    "produto": 1,
+    "quantidade": 4,
+    "preco": "0.00"
+  }
+},
+{
+  "model": "core.itenscompra",
+  "pk": 7,
+  "fields": {
+    "compra": 4,
+    "produto": 2,
+    "quantidade": 5,
+    "preco": "0.00"
+  }
+},
+{
+  "model": "core.itenscompra",
+  "pk": 8,
+  "fields": {
+    "compra": 5,
+    "produto": 2,
+    "quantidade": 7,
+    "preco": "0.00"
+  }
+}
+]
