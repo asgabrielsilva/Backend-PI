@@ -4,6 +4,12 @@ from .user import User
 from .produto import Produto
 
 class Compra(models.Model):
+    class TipoPagamento(models.IntegerChoices):
+        PIX = 1, "PIX"
+        CARTAO_CREDITO = 2, "Cartão de Crédito"
+        CARTAO_DEBITO = 3, "Cartão de Débito"
+        BOLETO = 4, "Boleto"
+
     class StatusCompra(models.IntegerChoices):
         CARRINHO = 1, "Carrinho"
         REALIZADO = 2, "Realizado"
@@ -11,6 +17,7 @@ class Compra(models.Model):
         ENTREGUE = 4, "Entregue"
 
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="compras", blank=True, null=True)
+    tipo_pagamento = models.IntegerField(choices=TipoPagamento.choices, default=TipoPagamento.PIX)
     status = models.IntegerField(choices=StatusCompra.choices,  default=StatusCompra.CARRINHO)
     data = models.DateTimeField(auto_now_add=True)
 
