@@ -1,10 +1,11 @@
 from rest_framework.serializers import (
     CharField,
     CurrentUserDefault,
+    DateTimeField,
     HiddenField,
     ModelSerializer,
     SerializerMethodField,
-    ValidationError, # novo
+    ValidationError,
 )
 
 from core.models import Compra, ItensCompra
@@ -40,11 +41,12 @@ class CriarEditarItensCompraSerializer(ModelSerializer):
 class CompraSerializer(ModelSerializer):
     usuario = CharField(source="user.email", read_only=True)
     status = CharField(source="get_status_display", read_only=True)
+    data = DateTimeField(read_only=True)
     itens = ItensCompraSerializer(read_only=True, many=True)
 
     class Meta:
         model = Compra
-        # fields = ("id", "usuario", "status", "total", "itens")
+        # fields = ("id", "usuario", "status", "total", "data", "itens")
         fields = "__all__"
 
 class CriarEditarCompraSerializer(ModelSerializer):
