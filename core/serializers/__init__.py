@@ -7,4 +7,8 @@ from .compra import  (
     CriarEditarItensCompraSerializer,
     ListarItensCompraSerializer,
 )
-from .produto import ProdutoDetailSerializer, ProdutoListSerializer, ProdutoSerializer
+from .produto import (
+    ProdutoDetailSerializer,
+    ProdutoListSerializer,
+    ProdutoSerializer,
+)

@@ -59,22 +59,35 @@ class CriarEditarCompraSerializer(ModelSerializer):
         fields = "__all__"
         
     def create(self, validated_data):
-        itens_data = validated_data.pop("itens")
-        compra = Compra.objects.create(**validated_data)
-        for item_data in itens_data:
-            item_data["preco"] = item_data["produto"].preco
-            ItensCompra.objects.create(compra=compra, **item_data)
+        itens = validated_data.pop("itens")
+        usuario = validated_data["usuario"]
+
+        compra, criada = Compra.objects.get_or_create(
+            usuario=usuario, status=Compra.StatusCompra.CARRINHO, defaults=validated_data
+        )
+
+        for item in itens:
+            item_existente = compra.itens.filter(produto=item["produto"]).first()
+
+            if item_existente:
+                item_existente.quantidade += item["quantidade"]
+                item_existente.preco = item["produto"].preco
+                item_existente.save()
+            else:
+                item["preco"] = item["produto"].preco
+                ItensCompra.objects.create(compra=compra, **item)
+
         compra.save()
         return compra
-    
+
     def update(self, compra, validated_data):
-        itens_data = validated_data.pop("itens")
-        if itens_data:
+        itens = validated_data.pop("itens", [])
+        if itens:
             compra.itens.all().delete()
-            for item_data in itens_data:
-                item_data["preco"] = item_data["produto"].preco
-                ItensCompra.objects.create(compra=compra, **item_data)
-        compra.save()
+            for item in itens:
+                item["preco"] = item["produto"].preco
+                ItensCompra.objects.create(compra=compra, **item)
+
         return super().update(compra, validated_data)
 
 class ListarItensCompraSerializer(ModelSerializer):
