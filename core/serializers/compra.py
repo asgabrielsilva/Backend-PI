@@ -93,7 +93,7 @@ class ListarItensCompraSerializer(ModelSerializer):
 
     class Meta:
         model = ItensCompra
-        fields = ("quantidade", "produto")
+        fields = "__all__"
         depth = 1
 
 class ListarCompraSerializer(ModelSerializer):
@@ -102,4 +102,4 @@ class ListarCompraSerializer(ModelSerializer):
 
     class Meta:
         model = Compra
-        fields = ("id", "usuario", "itens")
+        fields = "__all__"
