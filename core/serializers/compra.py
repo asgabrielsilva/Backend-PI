@@ -24,8 +24,7 @@ class ItensCompraSerializer(ModelSerializer):
 class CriarEditarItensCompraSerializer(ModelSerializer):
     class Meta:
         model = ItensCompra
-        # fields = ("produto", "quantidade")
-        fields = "__all__"
+        fields = ("produto", "quantidade")
 
     def validate_quantidade(self, quantidade):
         if quantidade <= 0:
@@ -47,8 +46,7 @@ class CompraSerializer(ModelSerializer):
 
     class Meta:
         model = Compra
-        # fields = ("id", "usuario", "status", "total", "data", "tipo_pagamento", "itens")
-        fields = "__all__"
+        fields = ("id", "usuario", "status", "total", "data", "tipo_pagamento", "itens")
 
 class CriarEditarCompraSerializer(ModelSerializer):
     usuario = HiddenField(default=CurrentUserDefault())
@@ -56,7 +54,7 @@ class CriarEditarCompraSerializer(ModelSerializer):
     
     class Meta:
         model = Compra
-        fields = "__all__"
+        fields = ("usuario", "itens")
         
     def create(self, validated_data):
         itens = validated_data.pop("itens")
@@ -95,8 +93,7 @@ class ListarItensCompraSerializer(ModelSerializer):
 
     class Meta:
         model = ItensCompra
-        # fields = ("id", "usuario", "status", "total", "itens")
-        fields = "__all__"
+        fields = ("quantidade", "produto")
         depth = 1
 
 class ListarCompraSerializer(ModelSerializer):
@@ -105,5 +102,4 @@ class ListarCompraSerializer(ModelSerializer):
 
     class Meta:
         model = Compra
-        # fields = ("id", "usuario", "status", "total", "itens")
-        fields = "__all__"
+        fields = ("id", "usuario", "itens")
