@@ -31,10 +31,6 @@ class CriarEditarItensCompraSerializer(ModelSerializer):
             raise ValidationError("Quantidade deve ser maior que zero.")
         return quantidade
 
-    def validate(self, item):
-        if item["quantidade"] > item["produto"].quantidade:
-            raise ValidationError({"Quantidade de itens maior do que a quantidade em estoque."})
-        return item
 
 
 class CompraSerializer(ModelSerializer):
@@ -54,7 +50,7 @@ class CriarEditarCompraSerializer(ModelSerializer):
     
     class Meta:
         model = Compra
-        fields = ("usuario", "itens")
+        fields = ("id", "usuario", "itens")
         
     def create(self, validated_data):
         itens = validated_data.pop("itens")
